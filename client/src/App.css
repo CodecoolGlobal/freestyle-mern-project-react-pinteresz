@@ -27,7 +27,69 @@ button:active{
   transform: translateY(0.25rem)
 }
 .GameComponent{
-  background-color: green;
+  background-image: url('./clapperboard-popcorn-film-stripe-cinema-tickets-wooden-desk.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+
+.GameComponent__hintDiv{
+  background-color: #394864;
+  color: aliceblue;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 0.5em;
+}
+
+.GameComponent__hintDiv p{
+  margin: 0.5em;
+}
+
+
+.GameComponent__innerDiv{
+ backdrop-filter: blur(0.2rem);
+ height: 100vh;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
+.GameCompnonent__innerDivDiv{
+  height: 80vh;
+  width: 70%;
+  background-color: rgb(	40,44,52);
+  opacity: 90%;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.GameCompnonent__innerDivDiv h2{
+  color: aliceblue;
+  padding: 1em;
+  margin: 1em;
+}
+
+
+
+.GameCompnonent__inner3Div{
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+
+.GameCompnonent__inner3Div input{
+ margin: 0.5em;
+ padding: 0.5em;
+ font-size: 1rem;
+}
+
+.GameCompnonent__inner3Div button{
+  margin: 0.5em;
+  width: 15em;
+  padding: 1em;
 }
 
 .HeroComponent, .RegisterComponent, .LoginComponent{

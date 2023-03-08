@@ -73,17 +73,17 @@ useEffect(() => {
 
   return (
     <div className="App">
-      {/* <section className='toolbar'> 
+      <section className='toolbar'> 
         <button className='toolbarButton' onClick={() => (setClickedLogin(true), setClickedRegister(false))}>Login</button>
         <button className='toolbarButton' onClick={() => (setClickedRegister(true), setClickedLogin(false))}>Register</button>
         <button className='toolbarButton'>Play</button>
-      </section> */}
-      {/* {clickedRegister ? 
+      </section>
+      {clickedRegister ? 
       <Register/> :
       clickedLogin ? 
       <Login id={actualId} setId={setActualId}/> :
       <Hero/>
-      } */}
+      }
     
       <Game
         shot={handleShot}
