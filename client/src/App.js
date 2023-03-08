@@ -10,53 +10,66 @@ function App() {
   const [movieData, setMovieData] = useState({})
 
 
-  // useEffect(() => {
 
-    
-
-  // }, [imdbId])
 
 
 
   const handleShot = async () => {
-    const response = await fetch(`https://imdb-api.com/en/API/Top250Movies/k_06bwdtm3`)
+    const response = await fetch(`http://localhost:3001/movielist`)
     const parsedResponse = await response.json()
-    console.log(parsedResponse);
-    // parsedResponse.items.map(movie => {
-
-    // })
-    setImdbId(parsedResponse)
-    fetchMovieById(parsedResponse)
+    setMovieData(parsedResponse[Math.floor(Math.random()*250)])
   }
 
+useEffect(() => {
+  console.log(movieData);
+}, [movieData])
 
-    // const fetchMovieById = (asd) => {
-    //   console.log(asd);
 
-    //   for (let i = 100; i <= 199; i++) {
-    //     fetch(`https://imdb-api.com/en/API/Title/k_06bwdtm3/${asd.items[i].id}`)
-    //       .then(response => response.json())
-    //       .then(res => {
-    //         const newData = res
-    //         setMovieData(newData)
-    //         console.log(newData);
-    //         fetch("http://localhost:3001/api/data", {
-    //           method: "POST",
-    //           headers: {
-    //             'Content-Type': 'application/json',
-    //           },
-    //           body: JSON.stringify(newData)
-    //         })
-    //           .then(response => response.json())
-    //           .then(response => {
-    //             console.log(response);
-    //           })
-    //           .catch(error => {
-    //             console.log(error);
-    //           });
-    //       })
-    //   }
-    // }
+
+
+
+
+// build the database
+
+  // const handleShot = async () => {
+  //   const response = await fetch(`https://imdb-api.com/en/API/Top250Movies/${david}`)
+  //   const parsedResponse = await response.json()
+  //   console.log(parsedResponse);
+  //   // parsedResponse.items.map(movie => {
+
+  //   // })
+  //   setImdbId(parsedResponse)
+  //   fetchMovieById(parsedResponse)
+  // }
+
+
+  //   const fetchMovieById = (asd) => {
+  //     console.log(asd);
+
+  //     for (let i = 200; i <= 249; i++) {
+  //       fetch(`https://imdb-api.com/en/API/Title/${david}/${asd.items[i].id}`)
+  //         .then(response => response.json())
+  //         .then(res => {
+  //           const newData = res
+  //           setMovieData(newData)
+  //           console.log(newData);
+  //           fetch("http://localhost:3001/api/data", {
+  //             method: "POST",
+  //             headers: {
+  //               'Content-Type': 'application/json',
+  //             },
+  //             body: JSON.stringify(newData)
+  //           })
+  //             .then(response => response.json())
+  //             .then(response => {
+  //               console.log(response);
+  //             })
+  //             .catch(error => {
+  //               console.log(error);
+  //             });
+  //         })
+  //     }
+  //   }
   
 
 

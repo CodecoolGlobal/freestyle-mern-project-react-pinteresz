@@ -13,6 +13,12 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.get('/movielist', async (req, res) => {
+    const movies = await Movie.find({})
+    res.json(movies)
+
+})
+
 app.post('/api/data', (req, res) => {
     const movies = req.body 
     console.log("movies"+movies.title);
