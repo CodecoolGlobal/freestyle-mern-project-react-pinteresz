@@ -13,7 +13,7 @@ const handleSubmit = () => {
   inputField.toLowerCase() === movieData.title.toLowerCase() ? console.log("szép volt") : console.log("rossz válasz");
 }
     return(
-      <>
+    <div className='GameComponent'>
     <h2>Hit me with your best shot</h2>
     <input onChange={(e) =>{setInputField(e.target.value)}} type="text"></input>
     <button onClick={handleSubmit}>Submit</button>
@@ -70,7 +70,7 @@ const handleSubmit = () => {
         <p>No more hints, frick you!</p>
     </div> : undefined 
     }
-    </>
+    </div>
     )
 }
 

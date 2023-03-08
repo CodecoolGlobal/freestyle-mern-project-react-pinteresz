@@ -1,6 +1,9 @@
 import './App.css';
 import React, { useEffect, useState } from "react"
 import Game from './components/Game'
+import Register from './components/Register';
+import Hero from './components/Hero';
+import Login from './components/Login';
 
 function App() {
   const david = 'k_v4m9qw29';
@@ -8,11 +11,9 @@ function App() {
   const bence = 'k_06bwdtm3';
   const [imdbId, setImdbId] = useState('');
   const [movieData, setMovieData] = useState({})
-
-
-
-
-
+  const [clickedRegister, setClickedRegister] = useState(false);
+  const [clickedLogin, setClickedLogin] = useState(false);
+  const [actualId, setActualId] = useState('')
 
   const handleShot = async () => {
     const response = await fetch(`http://localhost:3001/movielist`)
@@ -21,12 +22,8 @@ function App() {
   }
 
 useEffect(() => {
-  console.log(movieData);
-}, [movieData])
-
-
-
-
+  console.log(actualId);
+}, [actualId])
 
 
 // build the database
@@ -76,6 +73,18 @@ useEffect(() => {
 
   return (
     <div className="App">
+      {/* <section className='toolbar'> 
+        <button className='toolbarButton' onClick={() => (setClickedLogin(true), setClickedRegister(false))}>Login</button>
+        <button className='toolbarButton' onClick={() => (setClickedRegister(true), setClickedLogin(false))}>Register</button>
+        <button className='toolbarButton'>Play</button>
+      </section> */}
+      {/* {clickedRegister ? 
+      <Register/> :
+      clickedLogin ? 
+      <Login id={actualId} setId={setActualId}/> :
+      <Hero/>
+      } */}
+    
       <Game
         shot={handleShot}
         movieData={movieData}
