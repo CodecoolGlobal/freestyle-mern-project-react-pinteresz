@@ -153,5 +153,6 @@ button:active{
   color: aliceblue;
   height: 4rem;
   position: fixed;
+  z-index: 1;
   width: 100%;
 }
