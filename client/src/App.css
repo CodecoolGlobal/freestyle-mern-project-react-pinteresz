@@ -21,11 +21,28 @@ button{
 
 button:hover{
   background-color: white;
-  color: #282c34;
+  color: #282c34 !important;
 }
+
 button:active{
   transform: translateY(0.25rem)
 }
+
+button:disabled{
+  border-color: rgb(138, 136, 136);
+  background-color: transparent;
+  color: rgb(138, 136, 136)
+}
+
+button:disabled:hover{
+  border-color: rgb(138, 136, 136);
+  color: rgb(138, 136, 136)
+}
+
+button:disabled:active{
+  transform: translateY(0rem)
+}
+
 .GameComponent{
   background-image: url('./clapperboard-popcorn-film-stripe-cinema-tickets-wooden-desk.jpg');
   background-size: cover;
@@ -92,7 +109,36 @@ button:active{
   padding: 1em;
 }
 
-.HeroComponent, .RegisterComponent, .LoginComponent{
+.ProfileDiv p{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: aliceblue;
+  margin: 1rem;
+  margin-left: 2rem;
+}
+
+.ProfileDiv button{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: aliceblue;
+  margin: 1rem;
+  margin-left: 2rem;
+}
+
+.ProfileTitle{
+  font-size: 3rem;
+  color: aliceblue;
+  margin: 1rem;
+  margin-left: 2rem;
+}
+
+.ProfileButton{
+  width: 15em;
+  margin-left: 2rem;
+  padding: 1em;
+}
+
+.HeroComponent, .RegisterComponent, .LoginComponent, .ProfileComponent{
   background-image: url('./composition-cinema-elements-red-background-with-copy-space.jpg');
   background-size: cover;
   height: 100vh;
@@ -103,7 +149,7 @@ button:active{
 
 .introduction{
   display: flex;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: aliceblue;
   font-weight: bolder;
   justify-self: center;

@@ -1,7 +1,7 @@
 import React , {useState} from 'react';
 
 
-function Register (){
+function Register ({setId, setLogin, setClickedRegister}){
 
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
@@ -18,7 +18,12 @@ function Register (){
           })
           .then(response => response.json())
           .then(response => {
-            alert(response)
+            alert(response[0])
+            console.log(response[1]);
+            console.log(response[1]["_id"]);
+            setId(response[1]["_id"])
+            setLogin(true)
+            setClickedRegister(false)
           })
           .catch(error => {
             console.log(error)

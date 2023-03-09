@@ -1,7 +1,7 @@
 import React , {useState} from 'react';
 
 
-function Login ({id, setId}){
+function Login ({setId, setLogin, setClickedLogin}){
 
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
@@ -19,7 +19,11 @@ function Login ({id, setId}){
           .then(response => response.json())
           .then(response => {
             alert(response[0])
-            setId(response[1])   
+            if(response[1].length > 1){
+                setId(response[1])
+                setClickedLogin(false)
+                setLogin(true)
+            }
           })
           .catch(error => {
             console.log(error)

@@ -4,6 +4,7 @@ import Game from './components/Game'
 import Register from './components/Register';
 import Hero from './components/Hero';
 import Login from './components/Login';
+import Profile from './components/Profile';
 
 function App() {
   const david = 'k_v4m9qw29';
@@ -14,7 +15,12 @@ function App() {
   const [clickedRegister, setClickedRegister] = useState(false);
   const [clickedLogin, setClickedLogin] = useState(false);
   const [actualId, setActualId] = useState('')
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [clickedProfile, setClickedProfile] = useState(false)
+  const [clickedPlay, setClickedPlay] = useState(false)
+  const [clickedHome, setClickedHome] = useState(false)
+  
+  
   const handleShot = async () => {
     const response = await fetch(`http://localhost:3001/movielist`)
     const parsedResponse = await response.json()
@@ -25,21 +31,24 @@ useEffect(() => {
   console.log(actualId);
 }, [actualId])
 
-
+const handleLogOut = () => {
+  setIsLoggedIn(false)
+  setClickedRegister(false)
+  setClickedLogin(false)
+  setClickedPlay(false)
+  setClickedProfile(false)
+  setMovieData({})
+  setActualId('')
+}
 // build the database
 
   // const handleShot = async () => {
   //   const response = await fetch(`https://imdb-api.com/en/API/Top250Movies/${david}`)
   //   const parsedResponse = await response.json()
   //   console.log(parsedResponse);
-  //   // parsedResponse.items.map(movie => {
-
-  //   // })
   //   setImdbId(parsedResponse)
   //   fetchMovieById(parsedResponse)
   // }
-
-
   //   const fetchMovieById = (asd) => {
   //     console.log(asd);
 
@@ -73,22 +82,41 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <section className='toolbar'> 
-        <button className='toolbarButton' onClick={() => (setClickedLogin(true), setClickedRegister(false))}>Login</button>
-        <button className='toolbarButton' onClick={() => (setClickedRegister(true), setClickedLogin(false))}>Register</button>
-        <button className='toolbarButton'>Play</button>
+      <section className='toolbar'>
+      {!isLoggedIn &&
+      <>
+      <button className='toolbarButton' onClick={() => (setClickedRegister(false), setClickedLogin(false), setClickedProfile(false), setClickedHome(true))}>Home</button>
+      <button className='toolbarButton' onClick={() => (setClickedLogin(true), setClickedRegister(false), setClickedProfile(false),setClickedHome(false))}>Login</button>
+      <button className='toolbarButton' onClick={() => (setClickedRegister(true), setClickedLogin(false), setClickedProfile(false), setClickedHome(false))}>Register</button>
+      </>
+      }
+      {isLoggedIn &&
+      <>
+      <button className='toolbarButton' onClick={() => (setClickedPlay(true), setClickedRegister(false), setClickedLogin(false), setClickedProfile(false))}>Play</button>
+      <button className='toolbarButton' onClick={() => (setClickedRegister(false), setClickedLogin(false), setClickedProfile(false),setClickedPlay(false),setMovieData({}),setClickedHome(true))}>Home</button>
+      <button className='toolbarButton' onClick={() => (setMovieData({}),setClickedRegister(false), setClickedLogin(false), setClickedPlay(false),setClickedProfile(true))}>Profile</button>
+      <button className='toolbarButton' onClick={handleLogOut}>Log out</button>
+      </>
+      }
+      
       </section>
       {clickedRegister ? 
-      <Register/> :
-      clickedLogin ? 
-      <Login id={actualId} setId={setActualId}/> :
+      <Register setId={setActualId} setLogin={setIsLoggedIn} setClickedRegister={setClickedRegister}/> :
+      clickedLogin ?
+      <Login setId={setActualId} setLogin={setIsLoggedIn} setClickedLogin={setClickedLogin}/> :
+      clickedProfile ?
+      <Profile id={actualId} setClickedProfile={setClickedProfile} setLogin={setIsLoggedIn}/> :
+      clickedPlay ?
+      <Game shot={handleShot} setMovieData={setMovieData} movieData={movieData} id={actualId}/> :
+      isLoggedIn ?
+      <Hero/> :
       <Hero/>
       }
     
-      <Game
+      {/* <Game
         shot={handleShot}
         movieData={movieData}
-      />
+      /> */}
     </div>
   );
   }
