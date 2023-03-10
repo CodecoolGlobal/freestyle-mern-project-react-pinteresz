@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const cors = require("cors")
 app.use(express.json());
 
 
@@ -8,13 +8,13 @@ const mongoose = require("mongoose");
 const Movie = require("./model/Movies");
 const User = require("./model/User");
 mongoose.connect('mongodb+srv://kovaDav:Netordfelpls321@cluster0.kqamisi.mongodb.net/freestyle')
+app.use(cors())
 
-
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 app.get('/movielist', async (req, res) => {
     const movies = await Movie.find({})
@@ -27,7 +27,7 @@ app.post('/user', async (req,res) => {
     res.json(user);
 })
 
-app.post('/score', async (req,res) => {
+app.put('/score', async (req,res) => {
     const id= req.body.id;
     const score = req.body.score;
     const updateScore = await User.findByIdAndUpdate(id, { $inc: {score: score}}, {new: true})

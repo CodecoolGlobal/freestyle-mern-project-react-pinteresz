@@ -22,7 +22,7 @@ function Game({shot, movieData, setMovieData, id}) {
 const handleSubmit = (e) => {
   inputField.toLowerCase() === movieData.title.toLowerCase() ?
   fetch('http://localhost:3001/score', {
-            method: 'POST',
+            method: 'PUT',
             headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify(
             {
