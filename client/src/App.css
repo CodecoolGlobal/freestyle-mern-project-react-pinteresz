@@ -31,7 +31,7 @@ button:active{
 button:disabled{
   border-color: rgb(138, 136, 136);
   background-color: transparent;
-  color: rgb(138, 136, 136)
+  color: rgb(138, 136, 136) !important
 }
 
 button:disabled:hover{

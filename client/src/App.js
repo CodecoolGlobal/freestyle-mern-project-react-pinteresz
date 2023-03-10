@@ -28,8 +28,8 @@ function App() {
   }
 
 useEffect(() => {
-  console.log(actualId);
-}, [actualId])
+  console.log(movieData);
+}, [movieData])
 
 const handleLogOut = () => {
   setIsLoggedIn(false)
@@ -108,6 +108,8 @@ const handleLogOut = () => {
       <Profile id={actualId} setClickedProfile={setClickedProfile} setLogin={setIsLoggedIn}/> :
       clickedPlay ?
       <Game shot={handleShot} setMovieData={setMovieData} movieData={movieData} id={actualId}/> :
+      clickedHome ?
+      <Hero/> :
       isLoggedIn ?
       <Hero/> :
       <Hero/>
