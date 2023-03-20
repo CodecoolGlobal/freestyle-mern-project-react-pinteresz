@@ -1,8 +1,8 @@
 import React , {useState} from 'react';
 
 
-
 function Hero (){
+
 
     return(
         <div className='HeroComponent'>

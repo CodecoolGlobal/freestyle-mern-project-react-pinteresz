@@ -1,5 +1,5 @@
 import React , {useState, useEffect, useRef} from 'react';
-
+import PopUp from './PopUp';
 function Game({shot, movieData, setMovieData, id}) {
   
   const [inputField, setInputField] = useState('')
@@ -8,6 +8,9 @@ function Game({shot, movieData, setMovieData, id}) {
   const answer = useRef()
   const submit = useRef()
   const giveHint = useRef()
+  const [popUp, setPopup] = useState(false)
+  const [text, setText] = useState("")
+
 
   const handleHint = (e) => {
     setHint(prev => prev + 1)
@@ -38,13 +41,16 @@ const handleSubmit = (e) => {
             giveHint.current.disabled = true
             submit.current.disabled = true
             setMovieData({})
-            alert(`You have gained ${score[hint]} points, your current score is ${response}!`)
+            setPopup(true)
+            setText(`You have gained ${score[hint]} points, your current score is ${response}!`)
           })
           .catch(error => {
             console.log(error)
           })
 
-  : alert("Wrong answer, try again!")
+  :
+        setPopup(true)
+        setText(`Wrong answer, try again!`)
 }
 
     function handleGenerate() {
@@ -55,9 +61,14 @@ const handleSubmit = (e) => {
       submit.current.disabled = false
     }
 
+    const handleOk = () => {
+      setPopup(false)
+    }
+
   return (
     <div className='GameComponent'>
       <div className='GameComponent__innerDiv'>
+      {popUp ? <PopUp text={text} hasOk={true} handleOk={handleOk} /> : undefined}
         <div className='GameCompnonent__innerDivDiv'>
           <h2>Hit me with your best shot</h2>
           <div className='GameCompnonent__inner3Div'>

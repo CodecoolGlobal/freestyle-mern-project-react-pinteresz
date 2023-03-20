@@ -202,3 +202,43 @@ button:disabled:active{
   z-index: 1;
   width: 100%;
 }
+
+.PopUp{
+  margin: 0.5rem;
+  display: flex;
+  opacity: 95%;
+  flex-direction: column;
+  gap: 2rem;
+  position: fixed;
+  width: 30rem;
+  height: 12rem;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  background-color: #282c34;
+  border-radius: 1.5rem;
+  z-index: 1;
+}
+
+.PopUpButton{
+  margin: 5%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: end;
+}
+
+.PopUpText{
+  margin: 5%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  font-weight: bolder;
+  justify-content: space-evenly;
+  align-items: end;
+}

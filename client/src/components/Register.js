@@ -1,13 +1,13 @@
-import React , {useState} from 'react';
-
+import React , {useState, useTransition} from 'react';
+import PopUp from './PopUp';
 
 function Register ({setId, setLogin, setClickedRegister}){
 
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
-
-
+    const [popUp, setPopup] = useState(false)
+    const [text, setText] = useState("")
     function handleSubmit(e){
         e.preventDefault()
         const data = {name, password, email}
@@ -18,23 +18,26 @@ function Register ({setId, setLogin, setClickedRegister}){
           })
           .then(response => response.json())
           .then(response => {
-            alert(response[0])
-            console.log(response[1]);
-            console.log(response[1]["_id"]);
+            setText(response[0])
             setId(response[1]["_id"])
-            setLogin(true)
-            setClickedRegister(false)
+            setPopup(true)
           })
           .catch(error => {
             console.log(error)
           })
     }
 
+const handleOk = () => {
+    setLogin(true)
+    setClickedRegister(false)
+    setPopup(false)
+}
+    
 
     return(
         <div className='RegisterComponent'>
-            <div>
-                
+            {popUp ? <PopUp text={text} hasOk={true} handleOk={handleOk}/>:undefined}
+            <div>    
             </div>
             <div className='RegisterDiv'>
                 <h2 className="RegisterDiv__h2">Please provide your information!</h2>
