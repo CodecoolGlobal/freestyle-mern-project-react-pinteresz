@@ -16,6 +16,8 @@ app.use(cors())
 //     next();
 // });
 
+  
+
 app.get('/movielist', async (req, res) => {
     const movies = await Movie.find({})
     res.json(movies)
@@ -100,6 +102,31 @@ app.post('/api/data', (req, res) => {
         // .then(res.json("The movies are stored in the database"))
 })
 
+// app.get('/userList', async (req,res) => {
+//     const userList = await User.find()
+
+    app.get("/userList", async (req, res) => {
+        const perPage = 10;
+        const page = req.query.page || 1;
+        User.find().sort({score: -1})
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec((err, users) => {
+          User.countDocuments((err, count) => {
+            if (err) return res.status(500).send(err);
+            res.send({
+              users,
+              current: page,
+              pages: Math.ceil(count / perPage)
+            });
+          });
+        });
+        
+      });
+
+    
+    // res.json(userList)
+// })
 
 
 

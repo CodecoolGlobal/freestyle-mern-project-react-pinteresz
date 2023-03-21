@@ -3,14 +3,14 @@ import PopUp from './PopUp';
 function Game({shot, movieData, setMovieData, id}) {
   
   const [inputField, setInputField] = useState('')
-  const [hint, setHint] = useState(0);
+  const [hint, setHint] = useState(-1);
   const score = [10,5,4,3,2,1]
   const answer = useRef()
   const submit = useRef()
   const giveHint = useRef()
   const [popUp, setPopup] = useState(false)
   const [text, setText] = useState("")
-
+  const [clickedGenerate, setClickedGenerate] = useState(true)
 
   const handleHint = (e) => {
     setHint(prev => prev + 1)
@@ -43,6 +43,7 @@ const handleSubmit = (e) => {
             setMovieData({})
             setPopup(true)
             setText(`You have gained ${score[hint]} points, your current score is ${response}!`)
+            setHint(-1)
           })
           .catch(error => {
             console.log(error)
@@ -54,6 +55,7 @@ const handleSubmit = (e) => {
 }
 
     function handleGenerate() {
+      setClickedGenerate(false)
       shot()
       setHint(0)
       answer.current.value = ""
@@ -73,9 +75,9 @@ const handleSubmit = (e) => {
           <h2>Hit me with your best shot</h2>
           <div className='GameCompnonent__inner3Div'>
               <input onChange={(e) => { setInputField(e.target.value) }} type="text" placeholder='Movie title' ref={answer}></input>
-              <button onClick={handleSubmit} ref={submit}>Submit</button>
+              <button onClick={handleSubmit} ref={submit} disabled={clickedGenerate}>Submit</button>
               <button onClick={handleGenerate}>Generate a movie</button>
-              <button onClick={handleHint} ref={giveHint}>Give a hint</button>
+              <button onClick={handleHint} ref={giveHint} disabled={clickedGenerate}>Give a hint</button>
               {
                 hint === 0 ?
                   <div className="GameComponent__hintDiv">

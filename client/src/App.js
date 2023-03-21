@@ -5,6 +5,7 @@ import Register from './components/Register';
 import Hero from './components/Hero';
 import Login from './components/Login';
 import Profile from './components/Profile';
+import Leaderboard from './components/Leaderboard'
 
 function App() {
   const david = 'k_v4m9qw29';
@@ -83,6 +84,8 @@ const handleLogOut = () => {
   return (
     <div className="App">
       <section className='toolbar'>
+
+   
       {!isLoggedIn &&
       <>
       <button className='toolbarButton' onClick={() => (setClickedRegister(false), setClickedLogin(false), setClickedProfile(false), setClickedHome(true))}>Home</button>
@@ -100,7 +103,8 @@ const handleLogOut = () => {
       }
       
       </section>
-      {clickedRegister ? 
+      <Leaderboard/>
+      {/* {clickedRegister ? 
       <Register setId={setActualId} setLogin={setIsLoggedIn} setClickedRegister={setClickedRegister}/> :
       clickedLogin ?
       <Login setId={setActualId} setLogin={setIsLoggedIn} setClickedLogin={setClickedLogin}/> :
@@ -115,7 +119,7 @@ const handleLogOut = () => {
       <Hero/>
       }
     
-      {/* <Game
+      <Game
         shot={handleShot}
         movieData={movieData}
       /> */}

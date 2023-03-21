@@ -7,7 +7,7 @@ function Login({ setId, setLogin, setClickedLogin }) {
     const [password, setPassword] = useState("")
     const [popUp, setPopup] = useState(false)
     const [text, setText] = useState("")
-
+    const [loggedIn, setLoggedIn] = useState(false)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -20,7 +20,11 @@ function Login({ setId, setLogin, setClickedLogin }) {
             .then(response => response.json())
             .then(response => {
                 setText(response[0])
+                setPopup(true)
+                setLoggedIn(false)
+                console.log(response[1])
                 if (response[1].length > 1) {
+                    setLoggedIn(true)
                     setId(response[1])
                     setPopup(true)
                 }
@@ -30,8 +34,10 @@ function Login({ setId, setLogin, setClickedLogin }) {
             })
     }
     const handleOk = () => {
-        setClickedLogin(false)
-        setLogin(true)
+        if(loggedIn){
+            setClickedLogin(false)
+            setLogin(true)
+        }
         setPopup(false)
     }
 

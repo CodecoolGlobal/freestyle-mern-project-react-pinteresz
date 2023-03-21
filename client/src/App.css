@@ -195,7 +195,7 @@ button:disabled:active{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #282c34;
+  background-color: rgb(40, 44, 52);
   color: aliceblue;
   height: 4rem;
   position: fixed;
@@ -206,7 +206,7 @@ button:disabled:active{
 .PopUp{
   margin: 0.5rem;
   display: flex;
-  opacity: 95%;
+  opacity: 98%;
   flex-direction: column;
   gap: 2rem;
   position: fixed;
@@ -217,8 +217,8 @@ button:disabled:active{
   justify-content: center;
   align-items: center;
   color: aliceblue;
-  background-color: #282c34;
-  border-radius: 1.5rem;
+  background-color: #656b77;
+  border-radius:  0.5rem !important;
   z-index: 1;
 }
 
@@ -241,4 +241,46 @@ button:disabled:active{
   font-weight: bolder;
   justify-content: space-evenly;
   align-items: end;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  
+}
+
+table tbody tr {
+  background-color: #92ded9
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #dbdde2;
+}
+
+table td,
+table th {
+  padding: 0.2rem;
+}
+.Leaderboard {
+  background-image: url('./clapperboard-popcorn-film-stripe-cinema-tickets-wooden-desk.jpg');
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LeaderboardTable{
+  background-color: rgba(40, 44, 52, 0.95);
+  color: rgb(40, 44, 52);
+  padding: 2rem;
+  width: 60%;
+  border-radius: 0.5rem;
+}
+
+
+.LeaderboardTable_Thead{
+  color: aliceblue;
+  height: 3rem;
 }
