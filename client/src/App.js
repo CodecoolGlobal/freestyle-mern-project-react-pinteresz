@@ -20,7 +20,7 @@ function App() {
   const [clickedProfile, setClickedProfile] = useState(false)
   const [clickedPlay, setClickedPlay] = useState(false)
   const [clickedHome, setClickedHome] = useState(false)
-  
+  const [clickedLeaderboard, setClickedLeaderboard] = useState(false)
   
   const handleShot = async () => {
     const response = await fetch(`http://localhost:3001/movielist`)
@@ -88,23 +88,25 @@ const handleLogOut = () => {
    
       {!isLoggedIn &&
       <>
-      <button className='toolbarButton' onClick={() => (setClickedRegister(false), setClickedLogin(false), setClickedProfile(false), setClickedHome(true))}>Home</button>
-      <button className='toolbarButton' onClick={() => (setClickedLogin(true), setClickedRegister(false), setClickedProfile(false),setClickedHome(false))}>Login</button>
-      <button className='toolbarButton' onClick={() => (setClickedRegister(true), setClickedLogin(false), setClickedProfile(false), setClickedHome(false))}>Register</button>
+      <button className='toolbarButton' onClick={() => (setClickedRegister(false), setClickedLogin(false), setClickedProfile(false), setClickedHome(true),setClickedLeaderboard(false))}>Home</button>
+      <button className='toolbarButton' onClick={() => (setClickedLogin(true), setClickedRegister(false), setClickedProfile(false),setClickedHome(false),setClickedLeaderboard(false))}>Login</button>
+      <button className='toolbarButton' onClick={() => (setClickedRegister(true), setClickedLogin(false), setClickedProfile(false), setClickedHome(false),setClickedLeaderboard(false))}>Register</button>
+      <button className='toolbarButton' onClick={() => (setClickedLeaderboard(true),setClickedRegister(false), setClickedLogin(false), setClickedProfile(false), setClickedHome(false))}>Leaderboard</button>
       </>
       }
       {isLoggedIn &&
       <>
-      <button className='toolbarButton' onClick={() => (setClickedPlay(true), setClickedRegister(false), setClickedLogin(false), setClickedProfile(false))}>Play</button>
-      <button className='toolbarButton' onClick={() => (setClickedRegister(false), setClickedLogin(false), setClickedProfile(false),setClickedPlay(false),setMovieData({}),setClickedHome(true))}>Home</button>
-      <button className='toolbarButton' onClick={() => (setMovieData({}),setClickedRegister(false), setClickedLogin(false), setClickedPlay(false),setClickedProfile(true))}>Profile</button>
+      <button className='toolbarButton' onClick={() => (setClickedPlay(true), setClickedRegister(false), setClickedLogin(false), setClickedProfile(false),setClickedLeaderboard(false), setClickedHome(false))}>Play</button>
+      <button className='toolbarButton' onClick={() => (setClickedRegister(false), setClickedLogin(false), setClickedProfile(false),setClickedPlay(false),setMovieData({}), setClickedHome(false),setClickedHome(true),setClickedLeaderboard(false))}>Home</button>
+      <button className='toolbarButton' onClick={() => (setMovieData({}),setClickedRegister(false), setClickedLogin(false), setClickedPlay(false),setClickedProfile(true),setClickedLeaderboard(false), setClickedHome(false))}>Profile</button>
+      <button className='toolbarButton' onClick={() => (setClickedLeaderboard(true),setMovieData({}),setClickedRegister(false), setClickedLogin(false), setClickedPlay(false),setClickedProfile(false), setClickedHome(false))}>Leaderboard</button>
       <button className='toolbarButton' onClick={handleLogOut}>Log out</button>
       </>
       }
       
       </section>
-      <Leaderboard/>
-      {/* {clickedRegister ? 
+      
+      {clickedRegister ? 
       <Register setId={setActualId} setLogin={setIsLoggedIn} setClickedRegister={setClickedRegister}/> :
       clickedLogin ?
       <Login setId={setActualId} setLogin={setIsLoggedIn} setClickedLogin={setClickedLogin}/> :
@@ -114,6 +116,8 @@ const handleLogOut = () => {
       <Game shot={handleShot} setMovieData={setMovieData} movieData={movieData} id={actualId}/> :
       clickedHome ?
       <Hero/> :
+      clickedLeaderboard ? 
+      <Leaderboard id={actualId}/> :
       isLoggedIn ?
       <Hero/> :
       <Hero/>
@@ -122,7 +126,7 @@ const handleLogOut = () => {
       <Game
         shot={handleShot}
         movieData={movieData}
-      /> */}
+      />
     </div>
   );
   }

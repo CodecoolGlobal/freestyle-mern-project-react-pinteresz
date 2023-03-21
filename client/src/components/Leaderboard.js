@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-const Leaderboard = ({ employees, onDelete, presentChanged, sortByName }) => {
+const Leaderboard = ({ id }) => {
 
 
     const [users, setUsers] = useState([])
@@ -13,14 +13,17 @@ const Leaderboard = ({ employees, onDelete, presentChanged, sortByName }) => {
             .then(data => {
                 console.log(data);
                 setUsers(data.users);
-                setCurrentPage(data.page);
+                //setCurrentPage(data.page);
                 setTotalPages(data.pages)
             })
 
     }, [currentPage])
 
-   
-    
+    const handleFindMe = () => {
+        
+    }
+
+
 
     return (
         <div className="Leaderboard">
@@ -31,7 +34,7 @@ const Leaderboard = ({ employees, onDelete, presentChanged, sortByName }) => {
                             <th>Name</th>
                             <th>Score</th>
                             <th>Rank</th>
-                            <th />
+
                         </tr>
                     </thead>
                     <tbody>
@@ -45,10 +48,11 @@ const Leaderboard = ({ employees, onDelete, presentChanged, sortByName }) => {
                     </tbody>
                 </table>
                 <div className="pagination">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-          <button key={page} className={parseInt(currentPage) === page ? "active" : ""} onClick={() => setCurrentPage(page)}>{page}</button>
-        ))}
-      </div>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                        <button key={page} className={parseInt(currentPage) === page ? "active" : ""} onClick={() => setCurrentPage(page)}>{page}</button>
+                    ))}
+                    <button onClick={handleFindMe}>Find me</button>
+                </div>
             </div>
         </div>
     )
