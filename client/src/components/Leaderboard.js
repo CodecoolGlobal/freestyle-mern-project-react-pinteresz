@@ -42,7 +42,7 @@ const Leaderboard = ({ id }) => {
                             <tr key={user._id}>
                                 <td>{user.name}</td>
                                 <td>{user.score}</td>
-                                <td>{index + 1}</td>
+                                <td>{currentPage > 1 ? index + (currentPage * 10 - 10 + 1) : index + 1}</td>
                             </tr>)
                         )}
                     </tbody>
