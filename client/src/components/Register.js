@@ -8,9 +8,12 @@ function Register ({setId, setLogin, setClickedRegister}){
     const [email, setEmail] = useState("")
     const [popUp, setPopup] = useState(false)
     const [text, setText] = useState("")
+    const [loggedIn, setLoggedIn] = useState(false)
+
     function handleSubmit(e){
         e.preventDefault()
         const data = {name, password, email}
+        if(data.name.length > 0 && data.password.length > 0 && data.email.length > 0){
         fetch('http://localhost:3001/register', {
             method: 'POST',
             headers: { 'Content-Type' : 'application/json'},
@@ -20,16 +23,26 @@ function Register ({setId, setLogin, setClickedRegister}){
           .then(response => {
             setText(response[0])
             setId(response[1]["_id"])
+            if(response[0].includes("Thank you")){
+                setLoggedIn(true)
+            }
             setPopup(true)
           })
           .catch(error => {
             console.log(error)
           })
+        }else{
+            setText("Please provide all the necessary information for registration.")
+            setLoggedIn(false)
+            setPopup(true)
+        }   
     }
 
 const handleOk = () => {
-    setLogin(true)
-    setClickedRegister(false)
+    if(loggedIn){
+        setLogin(true)
+        setClickedRegister(false)
+    }
     setPopup(false)
 }
     

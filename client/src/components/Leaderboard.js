@@ -15,6 +15,7 @@ const Leaderboard = ({ id }) => {
                 setUsers(data.users);
                 //setCurrentPage(data.page);
                 setTotalPages(data.pages)
+                console.log(data)
             })
 
     }, [currentPage])
@@ -34,7 +35,6 @@ const Leaderboard = ({ id }) => {
                             <th>Name</th>
                             <th>Score</th>
                             <th>Rank</th>
-
                         </tr>
                     </thead>
                     <tbody>

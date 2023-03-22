@@ -2,24 +2,6 @@ const mongoose = require("mongoose");
 
 const {Schema, model} = mongoose;
 
-const PerksSchema = new Schema({
-    firstGuessBonus: {
-        type: Number,
-        default: 10,
-    },
-    hintBonus: {
-        type: Number,
-        default: 5,
-    },
-    dailyBonus:{
-        type: Number,
-        default: 10,
-    },
-    hintChance: {
-        type: Number,
-        default: 0,
-    }
-});
 
 const UserSchema = new Schema({
     name:{
@@ -44,10 +26,15 @@ const UserSchema = new Schema({
         type: Number,
         default: 0,
     },
-    perks: {
-        type: String,
-        default:''
-    }, 
+    perks: [
+        {
+            name:  String,
+            level: {
+                type: Number,
+                default: 0
+            }
+        }
+    ]
 });
 
 

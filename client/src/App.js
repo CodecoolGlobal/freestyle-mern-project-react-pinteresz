@@ -112,21 +112,16 @@ const handleLogOut = () => {
       <Login setId={setActualId} setLogin={setIsLoggedIn} setClickedLogin={setClickedLogin}/> :
       clickedProfile ?
       <Profile id={actualId} setClickedProfile={setClickedProfile} setLogin={setIsLoggedIn}/> :
-      clickedPlay ?
-      <Game shot={handleShot} setMovieData={setMovieData} movieData={movieData} id={actualId}/> :
       clickedHome ?
       <Hero/> :
       clickedLeaderboard ? 
       <Leaderboard id={actualId}/> :
+      clickedPlay ?
+      <Game shot={handleShot} setMovieData={setMovieData} movieData={movieData} id={actualId}/> :
       isLoggedIn ?
       <Hero/> :
       <Hero/>
       }
-    
-      <Game
-        shot={handleShot}
-        movieData={movieData}
-      />
     </div>
   );
   }
