@@ -63,7 +63,6 @@ const fetchUser = () => {
   }
 
   const handleUpgrade = (e) => {
-    
     console.log(e.target.dataset.perk)
     
     fetch(`http://localhost:3001/user/${id}`, { 
@@ -87,51 +86,51 @@ const fetchUser = () => {
         {userPerks.length > 0 ?
       <div className='PerkContainer'>
           <section className='Perk'>
-            <p className='PerkDescription'>There is a chance (5%/level) that when you get a hint, you won't get a point penalty for it. <br></br> Costs 10 points/level. </p>
+            <p className='PerkDescription'>There is a chance (5%/level) that when you get a hint, you won't get a point penalty for it. <br></br><br></br> Costs 5 points multiplied by the next level. </p>
             {userPerks[0].level >= 10 ? <p className='PerkLevel'>Maximum level has been reached!</p> : 
             <>
             <p className='PerkLevel'>Your current level: {userPerks[0].level}. </p>
-            <button data-perk={userPerks.length > 0 ? userPerks[0].name: ""} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
+            <button disabled={userScore < (userPerks[0].level+1)*5} data-perk={userPerks.length > 0 ? userPerks[0].name: ""} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
             </>}
           </section>
           <section className='Perk'>
-            <p className='PerkDescription'>There is a chance (5%/level) that you get double points for correct answer.<br></br> Costs 10 points/level.</p>
+            <p className='PerkDescription'>There is a chance (5%/level) that you get double points for correct answer.<br></br><br></br> Costs 5 points multiplied by the next level.</p>
             {userPerks[1].level >= 10 ? <p className='PerkLevel'>Maximum level has been reached!</p> : 
             <>
             <p className='PerkLevel'>Your current level: {userPerks[1].level}. </p>
-            <button data-perk={userPerks[1].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
+            <button disabled={userScore < (userPerks[1].level+1)*5} data-perk={userPerks[1].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
             </>}
           </section>
           <section className='Perk'>
-            <p className='PerkDescription'>There is a chance (5%/level) that when you get a hint, you get a second one for free. Costs 10 points/level.</p>
+            <p className='PerkDescription'>There is a chance (5%/level) that when you get a hint, you get a second one for free.<br></br><br></br> Costs 5 points multiplied by the next level.</p>
             {userPerks[2].level >= 10 ? <p className='PerkLevel'>Maximum level has been reached!</p> : 
             <>
             <p className='PerkLevel'>Your current level: {userPerks[2].level}. </p>
-            <button data-perk={userPerks[2].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
+            <button disabled={userScore <  (userPerks[2].level+1)*5} data-perk={userPerks[2].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
             </>}
           </section>
           <section className='Perk'>
-            <p className='PerkDescription'>There is a chance (5%/level) that you will get not 1 but 2 letters form every word of the movie's title.<br></br> Costs 10 points/level.</p>
+            <p className='PerkDescription'>There is a chance (5%/level) that you'll get 2 letters from every word of the title.<br></br> <br></br> Costs 5 points multiplied by the next level.</p>
             {userPerks[3].level >= 10 ? <p className='PerkLevel'>Maximum level has been reached!</p> : 
             <>
             <p className='PerkLevel'>Your current level: {userPerks[3].level}. </p>
-            <button data-perk={userPerks[3].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
+            <button disabled={userScore <  (userPerks[3].level+1)*5} data-perk={userPerks[3].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
             </>}
           </section>
           <section className='Perk'>
-            <p className='PerkDescription'>asd</p>
+            <p className='PerkDescription'>To help you through the desperate times, there will be a motivational quote after you generate a movie. <br></br><br></br> Costs 1 point.</p>
             {userPerks[4].level >= 1 ? <p className='PerkLevel'>Maximum level has been reached!</p> : 
             <>
             <p className='PerkLevel'>Your current level: {userPerks[4].level}. </p>
-            <button data-perk={userPerks[4].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
+            <button disabled={userScore < (userPerks[4].level+1)*1} data-perk={userPerks[4].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
             </>}
           </section>
           <section className='Perk'>
-            <p className='PerkDescription'>There is a chance (3%) that when you generate a new movie, you instantly get the whole title.<br></br> Costs 150 points.</p>
+            <p className='PerkDescription'>There is a chance (3%) that when you generate a new movie, you instantly get the whole title.<br></br><br></br> Costs 150 points.</p>
             {userPerks[5].level >= 1 ? <p className='PerkLevel'>Maximum level has been reached!</p> : 
             <>
             <p className='PerkLevel'>Your current level: {userPerks[5].level}. </p>
-            <button data-perk={userPerks[5].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
+            <button disabled={userScore < (userPerks[5].level+1)*150} data-perk={userPerks[5].name} className='UpgradeButton' onClick={(e) => handleUpgrade(e)}>&#11014;</button>
             </>}
           </section>
         </div>

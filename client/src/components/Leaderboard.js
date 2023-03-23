@@ -39,7 +39,7 @@ const Leaderboard = ({ id }) => {
                     </thead>
                     <tbody>
                         {users.map((user, index) => (
-                            <tr key={user._id}>
+                            <tr className={user._id === id ? "LoggedIn": ""} key={user._id}>
                                 <td>{user.name}</td>
                                 <td>{user.score}</td>
                                 <td>{currentPage > 1 ? index + (currentPage * 10 - 10 + 1) : index + 1}</td>
@@ -51,7 +51,6 @@ const Leaderboard = ({ id }) => {
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
                         <button key={page} className={parseInt(currentPage) === page ? "active" : ""} onClick={() => setCurrentPage(page)}>{page}</button>
                     ))}
-                    <button onClick={handleFindMe}>Find me</button>
                 </div>
             </div>
         </div>

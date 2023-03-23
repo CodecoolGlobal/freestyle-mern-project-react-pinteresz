@@ -21,7 +21,7 @@ function App() {
   const [clickedPlay, setClickedPlay] = useState(false)
   const [clickedHome, setClickedHome] = useState(false)
   const [clickedLeaderboard, setClickedLeaderboard] = useState(false)
-  
+
   const handleShot = async () => {
     const response = await fetch(`http://localhost:3001/movielist`)
     const parsedResponse = await response.json()
@@ -121,9 +121,8 @@ const handleLogOut = () => {
       isLoggedIn ?
       <Hero/> :
       <Hero/>
-      }
+  }
     </div>
   );
-  }
-
+}
 export default App;

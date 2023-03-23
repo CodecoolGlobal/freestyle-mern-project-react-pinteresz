@@ -146,6 +146,7 @@ app.patch("/user/:id", async (req, res) => {
     const perk = req.body.name;
     const perkList = ["freeHint", "doubleScore", "doubleHint", "twoLetters", "motivationalQuote", "freeWin"]
     const user = await User.findById(req.params.id)
+    user.score -= perk === "freeWin" ? 150 : (5 * (user.perks[perkList.reduce((acc, curr) => curr === perk ? acc = perkList.indexOf(curr) : acc, perkList[0])].level + 1))
     user.perks[perkList.reduce((acc, curr) => curr === perk ? acc = perkList.indexOf(curr) : acc, perkList[0])].level += 1
     user.save()
     res.send(user)
