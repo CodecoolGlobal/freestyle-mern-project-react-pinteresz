@@ -2,13 +2,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors")
 app.use(express.json());
-
+const config = require("./secret.js");
 
 const mongoose = require("mongoose");
 const Movie = require("./model/Movies");
 const User = require("./model/User");
 const Perk = require("./model/Perks");
-mongoose.connect('mongodb+srv://kovaDav:Netordfelpls321@cluster0.kqamisi.mongodb.net/freestyle')
+console.log(config.mongo)
+mongoose.connect(`mongodb+srv://${process.env.uName}:${process.env.password}@cluster0.kqamisi.mongodb.net/freestyle`)
 app.use(cors())
 
 // app.use(function (req, res, next) {
